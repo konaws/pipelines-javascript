@@ -44,15 +44,17 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-    - task: AzureResourceGroupDeployment@2
+      - task: AzureResourceManagerTemplateDeployment@3
       inputs:
-        azureSubscription: $(devConnection)
-        resourceGroupName: $(rgName)
-        location: 'North Europe'
+        deploymentScope: 'Resource Group'
+        ConnectedServiceName: $(devConnection)
         action: 'Create Or Update Resource Group'
+        resourceGroupName: 'FromTaskName'
+        location: 'North Europe'
         templateLocation: 'Linked artifact'
         csmFile: 'ops/armTemplates/rg_template.json'
         deploymentMode: 'Incremental'
+
   
 - stage: deploy
   displayName: 'Deploy app'
