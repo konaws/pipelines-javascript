@@ -50,6 +50,8 @@ stages:
         action: 'Create Or Update Resource Group'
         resourceGroupName: $(rgName)
         location: 'North Europe'
+        templateLocation: 'Linked artifact'
+        csmFile: 'ops/armTemplates/rg_template.json'
         deploymentMode: 'Incremental'
   
 - stage: deploy
