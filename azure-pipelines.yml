@@ -7,7 +7,7 @@ pr: none
 variables:
   devConnection: 'FreeTrial'
   appName: 'devAppName'
-#  rgName: 'testRG'
+  rgName: 'B1'
 
 
 stages:
@@ -47,10 +47,11 @@ stages:
     - task: AzureResourceGroupDeployment@2
       inputs:
         azureSubscription: $(devConnection)
+        resourceGroupName: $(rgName)
+        location: 'North Europe'
         action: 'Create Or Update Resource Group'
         templateLocation: 'Linked artifact'
         csmFile: 'ops/armTemplates/rg_template.json'
-        csmParametersFile: 'ops/armTemplates/parameter_file.json'
         deploymentMode: 'Incremental'
   
 - stage: deploy
