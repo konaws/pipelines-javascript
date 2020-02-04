@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "rgName": {
-        "value": "name_from_pf"
+        "value": "A1"
       },
       "rgLocation": {
         "value": "North Europe"
