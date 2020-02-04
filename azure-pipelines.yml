@@ -50,7 +50,7 @@ stages:
         ConnectedServiceName: $(devConnection)
         subscriptionName: '396faa94-ee7a-4d2a-9da1-39addf39b96a'
         action: 'Create Or Update Resource Group'
-        resourceGroupName: 'FromTaskName'
+        resourceGroupName: 'A1'
         location: 'North Europe'
         templateLocation: 'Linked artifact'
         csmFile: 'ops/armTemplates/rg_template.json'
