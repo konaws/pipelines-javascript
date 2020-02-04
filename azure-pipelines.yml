@@ -44,15 +44,12 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-    - task: AzureResourceManagerTemplateDeployment@3
+    - task: AzureResourceGroupDeployment@2
       inputs:
-        deploymentScope: 'Resource Group'
-        ConnectedServiceName: $(devConnection)
+        azureSubscription: $(devConnection)
         action: 'Create Or Update Resource Group'
         resourceGroupName: $(rgName)
         location: 'North Europe'
-        templateLocation: 'Linked artifact'
-        csmFile: 'CreateAzureStorage/azuredeploy.json'
         deploymentMode: 'Incremental'
   
 - stage: deploy
