@@ -14,8 +14,8 @@
       {
         "type": "Microsoft.Resources/resourceGroups",
         "apiVersion": "2018-05-01",
-        "name": "a1",
-        "location": "North Europe",
+        "name": "[parameters('rgName')]",
+        "location": "[parameters('rgLocation')]",
         "properties": {}
       }
     ],
