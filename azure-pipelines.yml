@@ -7,6 +7,8 @@ pr: none
 variables:
   devConnection: 'FreeTrial'
   appName: 'devAppName'
+  rgName: 'testRG'
+
 
 stages:
 - stage: build
@@ -33,9 +35,29 @@ stages:
       inputs:
         targetPath: '$(System.ArtifactsDirectory)'
 
+- stage: build_azure_resources
+  displayName: 'Build Azure resources'
+  dependsOn: build
+  jobs:
+  - job: build_arm
+    displayName: "Build Azure resources"
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        ConnectedServiceName: $(devConnection)
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: $(rgName)
+        location: 'North Europe'
+        templateLocation: 'Linked artifact'
+        csmFile: 'CreateAzureStorage/azuredeploy.json'
+        deploymentMode: 'Incremental'
+  
 - stage: deploy
   displayName: 'Deploy app'
-  dependsOn: build
+  dependsOn: build_azure_resources
   jobs:
   - deployment: deployDev
     displayName: 'Deploy Dev'
