@@ -48,6 +48,7 @@ stages:
       inputs:
         deploymentScope: 'Resource Group'
         ConnectedServiceName: $(devConnection)
+        subscriptionName: '396faa94-ee7a-4d2a-9da1-39addf39b96a'
         action: 'Create Or Update Resource Group'
         resourceGroupName: 'FromTaskName'
         location: 'North Europe'
