@@ -7,7 +7,7 @@ pr: none
 variables:
   devConnection: 'FreeTrial'
   appName: 'devAppName'
-  rgName: 'testRG'
+#  rgName: 'testRG'
 
 
 stages:
@@ -48,10 +48,9 @@ stages:
       inputs:
         azureSubscription: $(devConnection)
         action: 'Create Or Update Resource Group'
-        resourceGroupName: $(rgName)
-        location: 'North Europe'
         templateLocation: 'Linked artifact'
         csmFile: 'ops/armTemplates/rg_template.json'
+        csmParametersFile: 'ops/armTemplates/parameter_file.json'
         deploymentMode: 'Incremental'
   
 - stage: deploy
